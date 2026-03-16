@@ -12,12 +12,12 @@ const Education = () => {
           viewport={{ once: false }}
           className="mb-20 text-center"
         >
-          <h2 className="font-display text-[48px] md:text-[64px] uppercase leading-[0.9] tracking-tighter mb-6">
+          <h2 className="font-display text-[clamp(2.2rem,8vw,64px)] uppercase leading-[0.9] tracking-tighter mb-6">
             Education <br /> <span className="text-[#999999]">& Certifications</span>
           </h2>
         </motion.div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 max-w-6xl mx-auto">
           {/* Academic Background */}
           <div className="space-y-12">
             <h3 className="text-2xl font-sans font-medium uppercase tracking-widest text-[#999999] mb-8 border-b border-[#0f0f0f]/10 pb-4">
@@ -56,9 +56,9 @@ const Education = () => {
               className="mb-12"
             >
               <div className="bg-[#f5f5f5] p-8 rounded-[4px] border border-transparent hover:border-[#0f0f0f]/10 transition-colors">
-                <div className="flex justify-between items-start mb-4">
-                  <h4 className="text-xl font-display uppercase">Prompt Engineering: ChatGPT, Gen AI & LLM</h4>
-                  <span className="text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">Infosys</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
+                  <h4 className="text-lg md:text-xl font-display uppercase leading-tight">Prompt Engineering: ChatGPT, Gen AI & LLM</h4>
+                  <span className="flex-shrink-0 self-start text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">Infosys</span>
                 </div>
                 <p className="text-[#666666] text-sm leading-relaxed mb-2">Certification showcasing prompt engineering proficiency.</p>
                 <span className="text-xs text-[#999999] font-medium">Aug 2025</span>
@@ -73,9 +73,9 @@ const Education = () => {
               className="mb-12"
             >
               <div className="bg-[#f5f5f5] p-8 rounded-[4px] border border-transparent hover:border-[#0f0f0f]/10 transition-colors">
-                <div className="flex justify-between items-start mb-4">
-                  <h4 className="text-xl font-display uppercase">Cloud Computing</h4>
-                  <span className="text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">NPTEL</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
+                  <h4 className="text-lg md:text-xl font-display uppercase leading-tight">Cloud Computing</h4>
+                  <span className="flex-shrink-0 self-start text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">NPTEL</span>
                 </div>
                 <p className="text-[#666666] text-sm leading-relaxed mb-2">Fundamental cloud computing concepts and applications.</p>
                 <span className="text-xs text-[#999999] font-medium">Apr 2025</span>

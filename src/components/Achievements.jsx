@@ -4,7 +4,7 @@ import { achievements } from '../data/portfolioData';
 
 const Achievements = () => {
   return (
-    <section id="achievements" className="bg-background py-[160px] relative w-full overflow-hidden">
+    <section id="achievements" className="bg-background py-20 md:py-[160px] relative w-full overflow-hidden">
       <div className="container px-6 md:px-12 mx-auto max-w-[1200px]">
         <motion.div
            initial={{ opacity: 0, y: 50 }}

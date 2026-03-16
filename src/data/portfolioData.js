@@ -2,6 +2,7 @@ import mapsImg from '../assets/projects/maps.png';
 import brainlitixImg from '../assets/projects/brainlitix.jpeg';
 import farmacyImg from '../assets/projects/Farmacy.png';
 import extensionImg from '../assets/projects/extenstion.jpeg';
+import rtosImg from '../assets/projects/rtos.jpeg';
 
 export const projects = [
   {
@@ -48,7 +49,7 @@ export const projects = [
     description: "Real-Time Operating System implementation in C, featuring task scheduling, context switching, and synchronization primitives built from scratch.",
     liveUrl: null,
     githubUrl: "https://github.com/harshmishra00/RTOS",
-    image: null,
+    image: rtosImg,
     imageColor: "bg-orange-900",
     techStack: ["C", "FreeRTOS", "Task Scheduling", "Context Switching", "Semaphores"]
   },

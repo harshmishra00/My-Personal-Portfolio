@@ -83,12 +83,14 @@ const MobileProjectCard = ({ project, index }) => (
       )}
 
       <div className="flex gap-3 pt-2">
-        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-          className="flex-1 text-center py-3 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold">
-          Live Demo
-        </a>
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+            className="flex-1 text-center py-3 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold">
+            Live Demo
+          </a>
+        )}
         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-          className="flex-1 text-center py-3 rounded-full border border-[#0f0f0f]/20 text-[#0f0f0f] text-sm font-semibold">
+          className={`${project.liveUrl ? 'flex-1' : 'w-full'} text-center py-3 rounded-full border border-[#0f0f0f]/20 text-[#0f0f0f] text-sm font-semibold`}>
           GitHub
         </a>
       </div>
@@ -138,11 +140,13 @@ const ProjectCard = ({ project, index }) => {
               )}
             </div>
             <div className="mt-8 md:mt-0 flex flex-wrap gap-4">
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-8 py-4 rounded-full bg-[#0f0f0f] text-white text-lg font-semibold hover:bg-[#222] transition-all hover:scale-105 active:scale-95">
-                Live Demo
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </a>
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-8 py-4 rounded-full bg-[#0f0f0f] text-white text-lg font-semibold hover:bg-[#222] transition-all hover:scale-105 active:scale-95">
+                  Live Demo
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              )}
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 px-8 py-4 rounded-full border border-[#0f0f0f]/20 text-[#0f0f0f] text-lg font-semibold hover:bg-[#0f0f0f]/5 transition-all hover:scale-105 active:scale-95">
                 GitHub

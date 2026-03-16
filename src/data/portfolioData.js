@@ -44,7 +44,7 @@ export const projects = [
     id: 4,
     year: "2024",
     category: "Systems / C",
-    title: "RTOS",
+    title: "RTOS Event Logger",
     description: "Real-Time Operating System implementation in C, featuring task scheduling, context switching, and synchronization primitives built from scratch.",
     liveUrl: null,
     githubUrl: "https://github.com/harshmishra00/RTOS",

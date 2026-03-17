@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+
+const HOLOPIN_SRC = 'https://holopin.me/harshmishra00';
 
 const Holopin = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="holopin" className="bg-background py-[120px] relative overflow-hidden">
+    <section id="holopin" ref={sectionRef} className="bg-background py-[120px] relative overflow-hidden">
       {/* Faint background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-purple-700/10 blur-[100px] pointer-events-none" />
 
@@ -72,10 +90,10 @@ const Holopin = () => {
             </div>
           )}
 
-          {/* Actual board image */}
+          {/* Actual board image — only loads once section scrolls into view */}
           <a href="https://holopin.io/@harshmishra00" target="_blank" rel="noopener noreferrer">
             <img
-              src="https://holopin.me/harshmishra00"
+              src={shouldLoad ? HOLOPIN_SRC : undefined}
               alt="@harshmishra00's Holopin badges board"
               className={`w-full rounded-xl transition-opacity duration-500 hover:opacity-90 ${imgLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
               onLoad={() => setImgLoaded(true)}

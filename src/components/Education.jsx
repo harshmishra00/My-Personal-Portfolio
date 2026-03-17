@@ -1,6 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { education } from '../data/portfolioData';
+import bitsNetworking from '../assets/certificates_webp/bits_networking.webp';
+import hacktoberfest from '../assets/certificates_webp/hacktoberfest.webp';
+import nptel from '../assets/certificates_webp/nptel.webp';
+import tcpIp from '../assets/certificates_webp/tcp_ip.webp';
+
+const certificateData = [
+  {
+    id: 1,
+    name: "Bits and Bytes of Computer Networking",
+    issuer: "Google / Coursera",
+    image: bitsNetworking
+  },
+  {
+    id: 2,
+    name: "Hacktoberfest Tree",
+    issuer: "DigitalOcean / Intel",
+    image: hacktoberfest
+  },
+  {
+    id: 3,
+    name: "Cloud Computing",
+    issuer: "NPTEL / IIT Kharagpur",
+    image: nptel
+  },
+  {
+    id: 4,
+    name: "TCP/IP Advanced Topics",
+    issuer: "Coursera",
+    image: tcpIp
+  }
+];
 
 const Education = () => {
   return (
@@ -43,46 +74,25 @@ const Education = () => {
             ))}
           </div>
           
-          {/* Certifications & Activities */}
+          {/* Certifications (2x2 Grid) */}
           <div className="space-y-12">
             <h3 className="text-2xl font-sans font-medium uppercase tracking-widest text-[#999999] mb-8 border-b border-[#0f0f0f]/10 pb-4">
-              Certifications & Activities
+              Certificates
             </h3>
             
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              className="mb-12"
-            >
-              <div className="bg-[#f5f5f5] p-8 rounded-[4px] border border-transparent hover:border-[#0f0f0f]/10 transition-colors">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
-                  <h4 className="text-lg md:text-xl font-display uppercase leading-tight">Prompt Engineering: ChatGPT, Gen AI & LLM</h4>
-                  <span className="flex-shrink-0 self-start text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">Infosys</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {certificateData.map((cert) => (
+                <div key={cert.id} className="w-full aspect-[4/3] bg-[#f5f5f5] border border-[#0f0f0f]/10 rounded-xl flex items-center justify-center overflow-hidden relative group hover:border-[#0f0f0f]/30 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer">
+                  <img src={cert.image} alt={cert.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                    <h4 className="text-white font-display text-lg uppercase leading-tight mb-1">{cert.name}</h4>
+                    <p className="text-white/70 text-xs font-sans uppercase tracking-wider">{cert.issuer}</p>
+                  </div>
                 </div>
-                <p className="text-[#666666] text-sm leading-relaxed mb-2">Certification showcasing prompt engineering proficiency.</p>
-                <span className="text-xs text-[#999999] font-medium">Aug 2025</span>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: 0.1 }}
-              className="mb-12"
-            >
-              <div className="bg-[#f5f5f5] p-8 rounded-[4px] border border-transparent hover:border-[#0f0f0f]/10 transition-colors">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
-                  <h4 className="text-lg md:text-xl font-display uppercase leading-tight">Cloud Computing</h4>
-                  <span className="flex-shrink-0 self-start text-xs bg-[#0f0f0f] text-white px-2 py-1 rounded">NPTEL</span>
-                </div>
-                <p className="text-[#666666] text-sm leading-relaxed mb-2">Fundamental cloud computing concepts and applications.</p>
-                <span className="text-xs text-[#999999] font-medium">Apr 2025</span>
-              </div>
-            </motion.div>
-
-
+              ))}
+            </div>
           </div>
         </div>
       </div>

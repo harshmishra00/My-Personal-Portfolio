@@ -130,3 +130,26 @@ export const education = [
     grade: "Percentage: 88.9%"
   }
 ];
+
+export const certificates = [
+  {
+    id: 1,
+    title: "Certificate 1",
+    issuer: "Issuer Name",
+    // import image at top: import cert1 from '../assets/cert1.jpg';
+    // then set image: cert1,
+    image: null, 
+  },
+  {
+    id: 2,
+    title: "Certificate 2",
+    issuer: "Issuer Name",
+    image: null,
+  },
+  {
+    id: 3,
+    title: "Certificate 3",
+    issuer: "Issuer Name",
+    image: null,
+  }
+];

@@ -1,8 +1,8 @@
-import mapsImg from '../assets/projects/maps.png';
-import brainlitixImg from '../assets/projects/brainlitix.jpeg';
-import farmacyImg from '../assets/projects/Farmacy.png';
-import extensionImg from '../assets/projects/extenstion.jpeg';
-import rtosImg from '../assets/projects/rtos.jpeg';
+import mapsImg from '../assets/projects/maps.webp';
+import brainlitixImg from '../assets/projects/brainlitix.webp';
+import farmacyImg from '../assets/projects/Farmacy.webp';
+import extensionImg from '../assets/projects/extenstion.webp';
+import rtosImg from '../assets/projects/rtos.webp';
 
 export const projects = [
   {

@@ -1,8 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 import { projects } from '../data/portfolioData';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const Projects = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
     <section id="work" className="w-full bg-white text-[#0f0f0f] relative pt-[12vh] pb-[6vh]">
 
@@ -28,18 +31,22 @@ const Projects = () => {
       </div>
 
       {/* Mobile: stacked cards */}
-      <div className="md:hidden flex flex-col gap-8 px-4">
-        {projects.map((project, index) => (
-          <MobileProjectCard key={project.id} project={project} index={index} />
-        ))}
-      </div>
+      {!isDesktop && (
+        <div className="md:hidden flex flex-col gap-8 px-4">
+          {projects.map((project, index) => (
+            <MobileProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+      )}
 
       {/* Desktop: sticky scroll stack */}
-      <div className="hidden md:block relative">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} total={projects.length} />
-        ))}
-      </div>
+      {isDesktop && (
+        <div className="hidden md:block relative">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} total={projects.length} />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
@@ -56,7 +63,7 @@ const MobileProjectCard = ({ project, index }) => (
     {/* Image */}
     <div className="w-full h-[200px] overflow-hidden">
       {project.image ? (
-        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+        <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
       ) : (
         <div className={`w-full h-full ${project.imageColor} flex items-center justify-center`}>
           <span className="text-white/20 font-display text-2xl uppercase tracking-widest">{project.title}</span>
@@ -156,7 +163,7 @@ const ProjectCard = ({ project, index }) => {
           </div>
           <div className="relative flex-1 w-full h-full rounded-[20px] overflow-hidden border border-[#e5e5e5] shadow-inner flex items-center justify-center">
             {project.image ? (
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+              <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
             ) : (
               <div className={`w-full h-full ${project.imageColor} flex items-center justify-center`}>
                 <span className="text-white/20 font-display text-4xl uppercase tracking-widest">{project.title}</span>

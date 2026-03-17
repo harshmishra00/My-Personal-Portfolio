@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import heroPic from '../assets/hero.jpeg';
+import heroPic from '../assets/hero.webp';
 
 const About = () => {
   const words = "Full-Stack Developer focused on building scalable web applications using the MERN stack, React, and Node.js. I design and develop complete systems, from intuitive frontends to secure backend APIs with authentication, role-based access control, and database integration. I enjoy solving complex problems, contributing to open source, and turning ideas into reliable, user-focused products.".split(" ");
@@ -39,6 +39,8 @@ const About = () => {
             <img
               src={heroPic}
               alt="Harsh Mishra"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover rounded-[28px] border border-white/10 shadow-2xl"
             />
           </motion.div>

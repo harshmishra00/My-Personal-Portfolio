@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const STATS = [
   { value: '5+', label: 'Projects' },
@@ -8,12 +9,15 @@ const STATS = [
 ];
 
 const Hero = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
     <section id="hero" className="relative min-h-screen w-full overflow-hidden bg-background">
 
       {/* ═══════════════════════════════════════════════════
           MOBILE LAYOUT  (hidden on md and above)
       ═══════════════════════════════════════════════════ */}
+      {!isDesktop && (
       <div className="md:hidden flex flex-col min-h-screen px-6 pt-28 pb-10">
 
         {/* Available badge */}
@@ -113,10 +117,12 @@ const Hero = () => {
           </a>
         </motion.div>
       </div>
+      )}
 
       {/* ═══════════════════════════════════════════════════
           DESKTOP LAYOUT  (hidden on mobile)
       ═══════════════════════════════════════════════════ */}
+      {isDesktop && (
       <div className="hidden md:flex flex-col items-center justify-center min-h-screen pt-24 pb-16">
 
         {/* Background Text */}
@@ -193,6 +199,7 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
+      )}
     </section>
   );
 };

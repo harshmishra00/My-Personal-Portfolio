@@ -12,9 +12,10 @@ const Navbar = () => {
 
   // Close menu on resize to desktop
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onMqChange = (e) => { if (e.matches) setMenuOpen(false); };
+    mq.addEventListener('change', onMqChange);
+    return () => mq.removeEventListener('change', onMqChange);
   }, []);
 
   const navLinks = [

@@ -20,6 +20,18 @@ export default {
       },
       animation: {
         'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'marquee-left': 'marquee-left 30s linear infinite',
+        'marquee-right': 'marquee-right 30s linear infinite',
+      },
+      keyframes: {
+        'marquee-left': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-33.333333%)' },
+        },
+        'marquee-right': {
+          '0%': { transform: 'translateX(-33.333333%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       }
     },
   },

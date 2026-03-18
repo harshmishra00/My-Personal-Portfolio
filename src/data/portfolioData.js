@@ -3,7 +3,8 @@ import brainlitixImg from '../assets/projects/brainlitix.webp';
 import farmacyImg from '../assets/projects/Farmacy.webp';
 import extensionImg from '../assets/projects/extenstion.webp';
 import rtosImg from '../assets/projects/rtos.webp';
-
+import lpuLogo from '../assets/lpulogo.png';
+import seiLogo from '../assets/sei.png';
 export const projects = [
   {
     id: 1,
@@ -115,19 +116,22 @@ export const education = [
     year: "2023 - Present",
     title: "Lovely Professional University",
     subtitle: "Bachelor of Technology - Computer Science and Engineering",
-    grade: "CGPA: 7.66"
+    grade: "CGPA: 7.66",
+    logo: lpuLogo
   },
   {
     year: "2022 - 2023",
     title: "Singhania Educational Institute",
     subtitle: "Intermediate (Class XII)",
-    grade: "Percentage: 91.2%"
+    grade: "Percentage: 91.2%",
+    logo: seiLogo
   },
   {
     year: "2020 - 2021",
     title: "Singhania Educational Institute",
     subtitle: "Matriculation (Class X)",
-    grade: "Percentage: 88.9%"
+    grade: "Percentage: 88.9%",
+    logo: seiLogo
   }
 ];
 

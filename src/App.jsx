@@ -8,7 +8,7 @@ import Projects from './components/Projects';
 import Services from './components/Services';
 import Education from './components/Education';
 import Achievements from './components/Achievements';
-import Holopin from './components/Holopin';
+// import Holopin from './components/Holopin';
 import Footer from './components/Footer';
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         <Services />
         <Education />
         <Achievements />
-        <Holopin />
+        {/* <Holopin /> */}
         <Footer />
       </div>
     </>

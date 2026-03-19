@@ -8,6 +8,21 @@ import seiLogo from '../assets/sei.png';
 import oscgImg from '../assets/oscg_campus_lead.webp';
 import hacktoberfestImg from '../assets/super_contributor.webp';
 import competitiveProgrammingImg from '../assets/competitive_programming.png';
+import badge01 from '../assets/badges/badge_01.webp';
+import badge02 from '../assets/badges/badge_02.webp';
+import badge03 from '../assets/badges/badge_03.webp';
+import badge04 from '../assets/badges/badge_04.webp';
+import badge05 from '../assets/badges/badge_05.webp';
+import badge06 from '../assets/badges/badge_06.webp';
+import badge07 from '../assets/badges/badge_07.webp';
+import badge08 from '../assets/badges/badge_08.webp';
+import badge09 from '../assets/badges/badge_09.webp';
+import badge10 from '../assets/badges/badge_10.webp';
+import badge11 from '../assets/badges/badge_11.webp';
+import badge12 from '../assets/badges/badge_12.webp';
+import badge13 from '../assets/badges/badge_13.webp';
+import badge14 from '../assets/badges/badge_14.webp';
+import superContributorBadge from '../assets/super_contributor.webp';
 export const projects = [
   {
     id: 1,
@@ -163,5 +178,143 @@ export const certificates = [
     title: "Certificate 3",
     issuer: "Issuer Name",
     image: null,
+  }
+];
+
+export const badges = [
+  {
+    id: 0,
+    platform: "HOLOPIN",
+    title: "Super Contributor",
+    image: superContributorBadge,
+    link: "https://www.holopin.io/@harshmishra00#",
+    borderColor: "border-amber-500/30",
+    glowColor: "shadow-amber-500/20"
+  },
+  {
+    id: 1,
+    platform: "HACKERRANK",
+    title: "Problem Solving",
+    image: badge06,
+    link: "https://www.hackerrank.com/profile/harshschoollife",
+    borderColor: "border-green-500/20",
+    glowColor: "shadow-green-500/20"
+  },
+  {
+    id: 2,
+    platform: "HOLOPIN",
+    title: "Holopin Board",
+    image: badge07,
+    link: "https://holopin.io/@harshmishra00#",
+    borderColor: "border-blue-500/20",
+    glowColor: "shadow-blue-500/20"
+  },
+  {
+    id: 3,
+    platform: "LEETCODE",
+    title: "LeetCode Milestone",
+    image: badge01,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-purple-500/20",
+    glowColor: "shadow-purple-500/20"
+  },
+  {
+    id: 4,
+    platform: "LEETCODE",
+    title: "LeetCode Milestone",
+    image: badge02,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-blue-500/20",
+    glowColor: "shadow-blue-500/20"
+  },
+  {
+    id: 5,
+    platform: "LEETCODE",
+    title: "LeetCode Milestone",
+    image: badge03,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-green-500/20",
+    glowColor: "shadow-green-500/20"
+  },
+  {
+    id: 6,
+    platform: "LEETCODE",
+    title: "LeetCode Milestone",
+    image: badge04,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-red-500/20",
+    glowColor: "shadow-red-500/20"
+  },
+  {
+    id: 7,
+    platform: "LEETCODE",
+    title: "LeetCode Milestone",
+    image: badge05,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-red-500/20",
+    glowColor: "shadow-red-500/20"
+  },
+  {
+    id: 8,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge08,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-amber-500/20",
+    glowColor: "shadow-amber-500/20"
+  },
+  {
+    id: 9,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge09,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-blue-500/20",
+    glowColor: "shadow-blue-500/20"
+  },
+  {
+    id: 10,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge10,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-purple-500/20",
+    glowColor: "shadow-purple-500/20"
+  },
+  {
+    id: 11,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge11,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-green-500/20",
+    glowColor: "shadow-green-500/20"
+  },
+  {
+    id: 12,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge12,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-rose-500/20",
+    glowColor: "shadow-rose-500/20"
+  },
+  {
+    id: 13,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge13,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-sky-500/20",
+    glowColor: "shadow-sky-500/20"
+  },
+  {
+    id: 14,
+    platform: "LEETCODE",
+    title: "LeetCode Challenge",
+    image: badge14,
+    link: "https://leetcode.com/u/harshmishra00/",
+    borderColor: "border-indigo-500/20",
+    glowColor: "shadow-indigo-500/20"
   }
 ];

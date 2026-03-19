@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { achievements } from '../data/portfolioData';
+import { achievements, badges } from '../data/portfolioData';
 
 const Achievements = () => {
   return (
@@ -100,6 +100,63 @@ const Achievements = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* My Badges Section */}
+        <div className="mt-40">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h2 className="font-display text-5xl md:text-6xl text-white mb-4 tracking-tighter">My Badges</h2>
+            <p className="text-[#999999] text-sm md:text-base max-w-xl">
+              Recognitions gathered across various competitive and learning platforms.
+            </p>
+          </motion.div>
+
+          <div className="relative flex overflow-hidden py-4 cursor-grab active:cursor-grabbing">
+             {/* Gradients for fading edges */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
+
+            <motion.div
+              className="flex whitespace-nowrap gap-16 py-8"
+              drag="x"
+              dragConstraints={{ left: -1600, right: 0 }} // Adjusted for larger size
+              dragElastic={0.05}
+              animate={{
+                x: ['0%', '-50%'],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  duration: 60, // Slower for larger icons
+                  ease: 'linear',
+                },
+              }}
+            >
+              {[...badges, ...badges, ...badges].map((badge, index) => (
+                <a
+                  key={index}
+                  href={badge.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 relative group"
+                >
+                  <div className={`absolute inset-0 blur-3xl rounded-full opacity-25 group-hover:opacity-40 transition-opacity bg-current ${badge.glowColor}`} />
+                  <img
+                    src={badge.image}
+                    alt={badge.title || "Badge"}
+                    className="h-32 md:h-40 w-auto object-contain relative z-10 transition-transform duration-500"
+                  />
+                </a>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

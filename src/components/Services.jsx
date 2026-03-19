@@ -247,10 +247,10 @@ const Services = () => {
                 <div className="w-full lg:w-2/3 flex flex-wrap content-center gap-x-6 gap-y-6 md:gap-x-12 md:gap-y-8">
                    {category.tools.map((tool) => (
                       <div key={tool.name} className="flex items-center gap-3">
-                         <span className="w-8 h-8 md:w-10 md:h-10 opacity-30 grayscale-[100%] group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out transform group-hover:scale-110">
+                         <span className="w-8 h-8 md:w-10 md:h-10 opacity-100 grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-110">
                            {tool.icon}
                          </span>
-                         <span className="font-display text-2xl md:text-3xl uppercase tracking-tight text-[#666] group-hover:text-white transition-colors duration-700">
+                         <span className="font-display text-2xl md:text-3xl uppercase tracking-tight text-white/90 transition-colors duration-700">
                            {tool.name}
                          </span>
                       </div>

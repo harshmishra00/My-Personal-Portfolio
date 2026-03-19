@@ -37,8 +37,21 @@ const Achievements = () => {
                     whileInView={{ opacity: 1, x: 0, y: 0 }}
                     viewport={{ once: false, margin: "-100px" }}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors duration-300 group shadow-2xl"
+                    className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors duration-300 group shadow-2xl relative"
                   >
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-5 right-5 text-white/20 group-hover:text-amber-400 transition-colors duration-300"
+                        aria-label={`Visit ${item.title}`}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                     <span className="text-white/40 text-sm font-bold tracking-widest uppercase mb-3 block">
                       {item.year}
                     </span>
@@ -54,8 +67,36 @@ const Achievements = () => {
                   </motion.div>
                 </div>
 
-                {/* Empty Space for the other side */}
-                <div className="hidden md:block w-[45%]"></div>
+                {/* Achievement Image for the other side */}
+                {item.image && (
+                  <div className={`hidden md:flex w-[45%] items-center justify-center ${isEven ? 'md:pl-12' : 'md:pr-12'}`}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: false, margin: "-100px" }}
+                      transition={{ duration: 0.7, delay: 0.2 }}
+                      className="relative group"
+                    >
+                      <div className="absolute inset-0 rounded-2xl bg-white/10 blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {item.link ? (
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-48 h-48 object-cover rounded-2xl border border-white/10 shadow-2xl group-hover:scale-105 transition-transform duration-500 cursor-pointer"
+                          />
+                        </a>
+                      ) : (
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-48 h-48 object-cover rounded-2xl border border-white/10 shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
+                    </motion.div>
+                  </div>
+                )}
+                {!item.image && <div className="hidden md:block w-[45%]"></div>}
               </div>
             );
           })}

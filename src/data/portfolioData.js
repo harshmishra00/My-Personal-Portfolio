@@ -5,6 +5,9 @@ import extensionImg from '../assets/projects/extenstion.webp';
 import rtosImg from '../assets/projects/rtos.webp';
 import lpuLogo from '../assets/lpulogo.png';
 import seiLogo from '../assets/sei.png';
+import oscgImg from '../assets/oscg_campus_lead.webp';
+import hacktoberfestImg from '../assets/super_contributor.webp';
+import competitiveProgrammingImg from '../assets/competitive_programming.png';
 export const projects = [
   {
     id: 1,
@@ -74,21 +77,26 @@ export const achievements = [
     year: "2026",
     title: "OSCG Campus Lead",
     organization: "OSCG",
-    description: "Leading the campus chapter to foster open-source contributions and development."
+    description: "Leading the campus chapter to foster open-source contributions and development.",
+    image: oscgImg,
+    link: "https://oscg.dev"
   },
   {
     id: 2,
     year: "2025",
     title: "Hacktoberfest Super Contributor",
     organization: "Open Source",
-    description: "Contributed to multiple open-source repositories with accepted pull requests."
+    description: "Contributed to multiple open-source repositories with accepted pull requests.",
+    image: hacktoberfestImg,
+    link: "https://www.holopin.io/@harshmishra00#"
   },
   {
     id: 3,
     year: "2024",
     title: "Competitive Programming",
     organization: "LeetCode & GFG",
-    description: "Solved 400+ algorithmic problems across various coding platforms."
+    description: "Solved 400+ algorithmic problems across various coding platforms.",
+    image: competitiveProgrammingImg
   }
 ];
 

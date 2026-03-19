@@ -1,13 +1,16 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { projects } from '../data/portfolioData';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+
+const CARD_OFFSET = 32; // px between stacked card tops
+const SCALE_FACTOR = 0.055; // how much each buried card shrinks
 
 const Projects = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   return (
-    <section id="work" className="w-full bg-[#fcfcfc] text-[#0f0f0f] relative pt-[12vh] pb-[10vh]">
+    <section id="work" className="w-full bg-[#f7f7f5] text-[#0f0f0f] relative pt-[12vh] pb-[10vh]">
 
       {/* Section heading */}
       <div className="container px-6 md:px-12 mx-auto mb-10 md:mb-16">
@@ -30,20 +33,25 @@ const Projects = () => {
         </motion.h2>
       </div>
 
-      {/* Mobile: standard stacked cards with new UI */}
+      {/* Mobile */}
       {!isDesktop && (
-        <div className="md:hidden flex flex-col gap-10 px-4">
+        <div className="md:hidden flex flex-col gap-8 px-4">
           {projects.map((project, index) => (
             <MobileProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       )}
 
-      {/* Desktop: Advanced sticky scroll stack */}
+      {/* Desktop: sticky scroll stack */}
       {isDesktop && (
-        <div className="hidden md:block relative w-full h-full pb-[20vh]">
+        <div className="hidden md:block relative w-full pb-[20vh]">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} total={projects.length} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              total={projects.length}
+            />
           ))}
         </div>
       )}
@@ -54,53 +62,46 @@ const Projects = () => {
 /* ── Mobile card ──────────────────────────────────── */
 const MobileProjectCard = ({ project, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 60 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-60px' }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    className="rounded-[32px] border border-[#e5e5e5] bg-white overflow-hidden shadow-xl"
+    transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+    className="rounded-[28px] border border-black/8 bg-white overflow-hidden"
+    style={{ boxShadow: '0 8px 40px -8px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)' }}
   >
-    {/* Image */}
-    <div className="relative w-full h-[240px] overflow-hidden group">
+    <div className="relative w-full h-[220px] overflow-hidden">
       {project.image ? (
-        <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img src={project.image} alt={project.title} loading="lazy" decoding="async"
+          className="w-full h-full object-cover" />
       ) : (
         <div className={`w-full h-full ${project.imageColor || 'bg-black/5'} flex items-center justify-center`}>
           <span className="text-black/20 font-display text-3xl uppercase tracking-widest">{project.title}</span>
         </div>
       )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
     </div>
 
-    {/* Content */}
-    <div className="p-8 space-y-5">
+    <div className="p-7 space-y-4">
       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/10 bg-[#f5f5f5] text-[#666] text-[10px] font-bold uppercase tracking-widest">
         <span>{project.year}</span>
         <span className="w-1 h-1 rounded-full bg-black/20" />
         <span>{project.category}</span>
       </div>
-      <h2 className="text-4xl font-display font-medium text-[#0f0f0f] leading-[0.95] tracking-tight">{project.title}</h2>
+      <h2 className="text-3xl font-display font-medium text-[#0f0f0f] leading-[0.95] tracking-tight">{project.title}</h2>
       <p className="text-[#666] text-sm leading-relaxed font-sans">{project.description}</p>
 
-      {project.techStack && (
-        <div className="flex flex-wrap gap-2 pt-2">
-          {project.techStack.map((tech, i) => (
-            <span key={i} className="px-3 py-1.5 bg-[#f9f9f9] border border-[#e5e5e5] rounded-full text-[#444] text-[11px] font-semibold tracking-wide">
-              {tech}
-            </span>
-          ))}
-        </div>
-      )}
+      {project.techStack && <StackedTechBadges techs={project.techStack} compact />}
 
-      <div className="flex gap-3 pt-4">
+      <div className="flex gap-3 pt-2">
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold transition-all active:scale-95 shadow-md">
+            className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold active:scale-95 shadow-md transition-transform">
             Live Site
           </a>
         )}
         {project.githubUrl && (
           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-full border border-[#0f0f0f]/20 bg-white text-[#0f0f0f] text-sm font-semibold transition-all active:scale-95">
+            className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full border border-black/15 bg-white text-[#0f0f0f] text-sm font-semibold active:scale-95 transition-transform">
             GitHub
           </a>
         )}
@@ -109,113 +110,215 @@ const MobileProjectCard = ({ project, index }) => (
   </motion.div>
 );
 
+/* ── Stacked Tech Badge Deck ──────────────────────── */
+const stackColors = [
+  'bg-white border-black/10 text-[#333]',
+  'bg-neutral-100 border-black/8 text-[#555]',
+  'bg-neutral-200 border-black/6 text-[#666]',
+];
+
+const StackedTechBadges = ({ techs, compact = false }) => {
+  const [hovered, setHovered] = useState(false);
+  if (!techs || techs.length === 0) return null;
+
+  return (
+    <div
+      className={`flex flex-wrap ${compact ? 'gap-3' : 'gap-4'} pt-2`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {techs.map((tech, i) => {
+        const total = techs.length;
+        const fanY = hovered ? i * (compact ? 4 : 6) : i * (compact ? 2 : 2.5);
+        const fanRotate = hovered
+          ? (i - (total - 1) / 2) * (compact ? 3 : 4)
+          : (i - (total - 1) / 2) * 0.8;
+        const fanScale = hovered ? 1 - i * 0.03 : 1 - i * 0.015;
+        const fanZ = total - i;
+        const delay = hovered ? i * 0.04 : (total - 1 - i) * 0.03;
+        const bgClass = stackColors[Math.min(i, stackColors.length - 1)];
+
+        return (
+          <motion.span
+            key={i}
+            animate={{ y: -fanY, rotate: fanRotate, scale: fanScale, zIndex: fanZ }}
+            transition={{ type: 'spring', stiffness: 320, damping: 22, delay }}
+            style={{ position: 'relative', zIndex: fanZ }}
+            className={`
+              inline-block
+              ${compact ? 'px-3 py-1.5 text-[11px]' : 'px-3.5 py-1.5 text-[13px]'}
+              border rounded-full font-semibold tracking-wide
+              cursor-default select-none
+              ${i === 0 ? 'shadow-md' : 'shadow-sm'}
+              ${bgClass}
+              transition-shadow duration-300
+              ${hovered && i === 0 ? 'shadow-lg shadow-black/15' : ''}
+            `}
+          >
+            {tech}
+          </motion.span>
+        );
+      })}
+    </div>
+  );
+};
+
 /* ── Desktop sticky card ──────────────────────────── */
 const ProjectCard = ({ project, index, total }) => {
   const cardRef = useRef(null);
 
-  // Track scroll per card container (which is 100vh tall).
-  // When this container hits top, scrollYProgress is 0.
-  // When this container scrolls out (100vh later), scrollYProgress is 1.
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ['start start', 'end start']
+    offset: ['start start', 'end start'],
+  });
+
+  // Smooth the raw scroll value for buttery animation
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
   });
 
   const isLast = index === total - 1;
 
-  // Smoothly scale the card down as the NEXT card scrolls over it
-  const targetScale = isLast ? 1 : 1 - ((total - index) * 0.04);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+  // --- Scroll-driven transforms ---
 
-  // Hardware-accelerated opacity overlay instead of expensive CSS blur filter
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : 0.4]);
+  // Scale: card shrinks as it gets buried; last card stays full size
+  const scale = useTransform(
+    smoothProgress,
+    [0, 1],
+    [1, isLast ? 1 : 1 - SCALE_FACTOR * (total - index)]
+  );
 
-  // Stagger exact top offset so they look like a cascading deck of cards
-  const topOffset = `calc(5vh + ${index * 35}px)`;
+  // Y: card slowly rises upward as it gets buried under next cards
+  const translateY = useTransform(smoothProgress, [0, 1], [0, isLast ? 0 : -40]);
+
+  // RotateX: subtle perspective tilt as card recedes — gives real depth
+  const rotateX = useTransform(smoothProgress, [0, 1], [0, isLast ? 0 : 6]);
+
+  // Darkness overlay: deepens as card is buried
+  const overlayOpacity = useTransform(smoothProgress, [0, 1], [0, isLast ? 0 : 0.5]);
+
+  // Blur overlay (simulated via opacity of a frosted layer) 
+  const frostedOpacity = useTransform(smoothProgress, [0, 1], [0, isLast ? 0 : 0.15]);
+
+  // Cards peek behind — each card sits a bit lower to show depth
+  const topOffset = `calc(4vh + ${index * CARD_OFFSET}px)`;
 
   return (
-    // The wrapper creates scroll distance per card without hiding elements behind it
     <div
       ref={cardRef}
       className="h-[100vh] w-full flex items-start justify-center sticky top-0 pointer-events-none"
+      style={{ perspective: '1400px' }}
     >
       <motion.div
         style={{
           top: topOffset,
           scale,
-          willChange: "transform",
-          boxShadow: "0 -20px 80px -20px rgba(0,0,0,0.1), 0 30px 60px -15px rgba(0,0,0,0.1)"
+          y: translateY,
+          rotateX,
+          transformOrigin: 'top center',
+          willChange: 'transform',
+          boxShadow:
+            '0 -4px 24px -4px rgba(0,0,0,0.06), 0 32px 80px -16px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.04)',
         }}
-        className="absolute w-[92vw] max-w-[1250px] h-[75vh] md:h-[80vh] rounded-[48px] p-8 md:p-14 origin-top border border-neutral-200/60 bg-white overflow-hidden pointer-events-auto transition-all"
+        className="absolute w-[92vw] max-w-[1250px] h-[78vh] rounded-[44px] origin-top border border-neutral-200/80 bg-white overflow-hidden pointer-events-auto"
       >
-        {/* Dynamic Dark Overlay for depth instead of brightness/blur */}
+        {/* Dark depth overlay — grows as card is buried */}
         <motion.div
           style={{ opacity: overlayOpacity }}
-          className="absolute inset-0 bg-neutral-950 z-20 pointer-events-none rounded-[48px]"
+          className="absolute inset-0 bg-neutral-950 z-20 pointer-events-none rounded-[44px]"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-neutral-50/80 to-neutral-100/60 pointer-events-none" />
+        {/* Frosted shimmer layer */}
+        <motion.div
+          style={{ opacity: frostedOpacity }}
+          className="absolute inset-0 bg-white z-[21] pointer-events-none rounded-[44px] backdrop-blur-sm"
+        />
 
-        <div className="relative z-10 flex flex-col md:flex-row h-full gap-10 md:gap-14">
+        {/* Subtle gradient texture */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-neutral-50/60 to-neutral-100/40 pointer-events-none z-0" />
 
-          {/* Left: Text Content & Tech */}
-          <div className="md:w-5/12 flex flex-col justify-between py-6">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-black/10 bg-[#f9f9f9] text-[#666] text-xs font-bold uppercase tracking-widest shadow-sm">
+        {/* Index counter */}
+        <div className="absolute top-10 right-12 z-30 text-[11px] font-bold tracking-[0.2em] text-black/20 uppercase select-none">
+          {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col md:flex-row h-full gap-10 md:gap-12 p-10 md:p-14">
+
+          {/* Left: Text */}
+          <div className="md:w-[44%] flex flex-col justify-between py-2">
+            <div className="space-y-5">
+
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-black/10 bg-[#f5f5f3] text-[#666] text-xs font-bold uppercase tracking-widest shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-black/30" />
                 <span>{project.year}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-black/20" />
+                <span className="w-1 h-1 rounded-full bg-black/15" />
                 <span>{project.category}</span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-medium text-[#0f0f0f] leading-[0.95] tracking-tight">
+              <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-display font-medium text-[#0f0f0f] leading-[0.9] tracking-tight">
                 {project.title}
               </h2>
 
-              <p className="text-[#555555] text-lg lg:text-xl leading-relaxed font-sans max-w-sm">
+              <p className="text-[#666] text-base lg:text-lg leading-relaxed font-sans max-w-sm">
                 {project.description}
               </p>
 
-              {project.techStack && (
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {project.techStack.map((tech, i) => (
-                    <span key={i} className="px-3.5 py-1.5 bg-white border border-black/10 rounded-full text-[#444] text-[13px] font-semibold tracking-wide shadow-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {project.techStack && <StackedTechBadges techs={project.techStack} />}
             </div>
 
-            {/* Action Buttons */}
+            {/* Buttons */}
             <div className="mt-8 md:mt-0 flex gap-4">
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex flex-1 md:flex-none items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#0f0f0f] text-white text-sm md:text-base font-semibold transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 group">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/20 active:scale-95 group"
+                >
                   Live Site
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
                 </a>
               )}
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex flex-1 md:flex-none items-center justify-center gap-2 px-8 py-4 rounded-full bg-white border border-[#e5e5e5] text-[#0f0f0f] text-sm md:text-base font-semibold transition-all hover:-translate-y-1 hover:shadow-lg hover:border-black/20 active:scale-95 group">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white border border-black/12 text-[#0f0f0f] text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-black/20 active:scale-95"
+                >
                   GitHub
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
                 </a>
               )}
             </div>
           </div>
 
-          {/* Right: Awesome Image Display */}
-          <div className="relative flex-1 w-full h-full rounded-[24px] overflow-hidden border border-black/10 shadow-inner group">
+          {/* Right: Image */}
+          <div
+            className="relative flex-1 h-full rounded-[28px] overflow-hidden border border-black/8"
+            style={{ boxShadow: 'inset 0 2px 12px rgba(0,0,0,0.06)' }}
+          >
             {project.image ? (
-              <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
             ) : (
-              <div className={`w-full h-full ${project.imageColor || 'bg-black/5'} flex items-center justify-center transition-transform duration-1000 group-hover:scale-110`}>
+              <div className={`w-full h-full ${project.imageColor || 'bg-black/5'} flex items-center justify-center`}>
                 <span className="text-black/10 font-display text-5xl uppercase tracking-widest">{project.title}</span>
               </div>
             )}
-            {/* Elegant overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-transparent pointer-events-none" />
           </div>
 
         </div>

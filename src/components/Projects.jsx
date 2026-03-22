@@ -10,7 +10,7 @@ const Projects = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   return (
-    <section id="work" className="w-full bg-[#f7f7f5] text-[#0f0f0f] relative pt-[12vh] pb-[10vh]">
+    <section id="work" className="w-full bg-background text-white relative pt-[12vh] pb-[10vh]">
 
       {/* Section heading */}
       <div className="container px-6 md:px-12 mx-auto mb-10 md:mb-16">
@@ -27,7 +27,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.7 }}
-          className="font-display text-[clamp(3.5rem,8vw,8rem)] leading-[0.85] tracking-tighter uppercase text-[#0f0f0f]"
+          className="font-display text-[clamp(3.5rem,8vw,8rem)] leading-[0.85] tracking-tighter uppercase text-white"
         >
           Projects
         </motion.h2>
@@ -66,8 +66,8 @@ const MobileProjectCard = ({ project, index }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-60px' }}
     transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-    className="rounded-[28px] border border-black/8 bg-white overflow-hidden"
-    style={{ boxShadow: '0 8px 40px -8px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)' }}
+    className="rounded-[28px] border border-white/10 bg-[#1a1a1a] overflow-hidden"
+    style={{ boxShadow: '0 8px 40px -8px rgba(0,0,0,0.6), 0 2px 8px -2px rgba(0,0,0,0.4)' }}
   >
     <div className="relative w-full h-[220px] overflow-hidden">
       {project.image ? (
@@ -75,27 +75,27 @@ const MobileProjectCard = ({ project, index }) => (
           className="w-full h-full object-cover" />
       ) : (
         <div className={`w-full h-full ${project.imageColor || 'bg-black/5'} flex items-center justify-center`}>
-          <span className="text-black/20 font-display text-3xl uppercase tracking-widest">{project.title}</span>
+          <span className="text-white/20 font-display text-3xl uppercase tracking-widest">{project.title}</span>
         </div>
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
     </div>
 
     <div className="p-7 space-y-4">
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/10 bg-[#f5f5f5] text-[#666] text-[10px] font-bold uppercase tracking-widest">
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/50 text-[10px] font-bold uppercase tracking-widest">
         <span>{project.year}</span>
-        <span className="w-1 h-1 rounded-full bg-black/20" />
+        <span className="w-1 h-1 rounded-full bg-white/20" />
         <span>{project.category}</span>
       </div>
-      <h2 className="text-3xl font-display font-medium text-[#0f0f0f] leading-[0.95] tracking-tight">{project.title}</h2>
-      <p className="text-[#666] text-sm leading-relaxed font-sans">{project.description}</p>
+      <h2 className="text-3xl font-display font-medium text-white leading-[0.95] tracking-tight">{project.title}</h2>
+      <p className="text-white/50 text-sm leading-relaxed font-sans">{project.description}</p>
 
       {project.techStack && <StackedTechBadges techs={project.techStack} compact />}
 
       <div className="flex gap-3 pt-2">
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold active:scale-95 shadow-md transition-transform">
+            className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-[#0f0f0f] text-sm font-semibold active:scale-95 shadow-md transition-transform">
             Live Site
           </a>
         )}
@@ -112,9 +112,9 @@ const MobileProjectCard = ({ project, index }) => (
 
 /* ── Stacked Tech Badge Deck ──────────────────────── */
 const stackColors = [
-  'bg-white border-black/10 text-[#333]',
-  'bg-neutral-100 border-black/8 text-[#555]',
-  'bg-neutral-200 border-black/6 text-[#666]',
+  'bg-white/10 border-white/20 text-white/90',
+  'bg-white/7 border-white/15 text-white/70',
+  'bg-white/5 border-white/10 text-white/50',
 ];
 
 const StackedTechBadges = ({ techs, compact = false }) => {
@@ -222,7 +222,7 @@ const ProjectCard = ({ project, index, total }) => {
           boxShadow:
             '0 -4px 24px -4px rgba(0,0,0,0.06), 0 32px 80px -16px rgba(0,0,0,0.14), 0 4px 8px rgba(0,0,0,0.04)',
         }}
-        className="absolute w-[92vw] max-w-[1250px] h-[78vh] rounded-[44px] origin-top border border-neutral-200/80 bg-white overflow-hidden pointer-events-auto"
+        className="absolute w-[92vw] max-w-[1250px] h-[78vh] rounded-[44px] origin-top border border-white/10 bg-[#151515] overflow-hidden pointer-events-auto"
       >
         {/* Dark depth overlay — grows as card is buried */}
         <motion.div
@@ -237,10 +237,10 @@ const ProjectCard = ({ project, index, total }) => {
         />
 
         {/* Subtle gradient texture */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-neutral-50/60 to-neutral-100/40 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/3 via-transparent to-transparent pointer-events-none z-0" />
 
         {/* Index counter */}
-        <div className="absolute top-10 right-12 z-30 text-[11px] font-bold tracking-[0.2em] text-black/20 uppercase select-none">
+        <div className="absolute top-10 right-12 z-30 text-[11px] font-bold tracking-[0.2em] text-white/20 uppercase select-none">
           {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
         </div>
 
@@ -251,18 +251,18 @@ const ProjectCard = ({ project, index, total }) => {
           <div className="md:w-[44%] flex flex-col justify-between py-2">
             <div className="space-y-5">
 
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-black/10 bg-[#f5f5f3] text-[#666] text-xs font-bold uppercase tracking-widest shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-black/30" />
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white/50 text-xs font-bold uppercase tracking-widest shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
                 <span>{project.year}</span>
-                <span className="w-1 h-1 rounded-full bg-black/15" />
+                <span className="w-1 h-1 rounded-full bg-white/15" />
                 <span>{project.category}</span>
               </div>
 
-              <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-display font-medium text-[#0f0f0f] leading-[0.9] tracking-tight">
+              <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-display font-medium text-white leading-[0.9] tracking-tight">
                 {project.title}
               </h2>
 
-              <p className="text-[#666] text-base lg:text-lg leading-relaxed font-sans max-w-sm">
+              <p className="text-white/50 text-base lg:text-lg leading-relaxed font-sans max-w-sm">
                 {project.description}
               </p>
 
@@ -276,7 +276,7 @@ const ProjectCard = ({ project, index, total }) => {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#0f0f0f] text-white text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/20 active:scale-95 group"
+                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-[#0f0f0f] text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-white/10 active:scale-95 group"
                 >
                   Live Site
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -289,7 +289,7 @@ const ProjectCard = ({ project, index, total }) => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white border border-black/12 text-[#0f0f0f] text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-black/20 active:scale-95"
+                  className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/5 border border-white/15 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-white/30 active:scale-95"
                 >
                   GitHub
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -302,7 +302,7 @@ const ProjectCard = ({ project, index, total }) => {
 
           {/* Right: Image */}
           <div
-            className="relative flex-1 h-full rounded-[28px] overflow-hidden border border-black/8"
+            className="relative flex-1 h-full rounded-[28px] overflow-hidden border border-white/10"
             style={{ boxShadow: 'inset 0 2px 12px rgba(0,0,0,0.06)' }}
           >
             {project.image ? (
@@ -315,10 +315,10 @@ const ProjectCard = ({ project, index, total }) => {
               />
             ) : (
               <div className={`w-full h-full ${project.imageColor || 'bg-black/5'} flex items-center justify-center`}>
-                <span className="text-black/10 font-display text-5xl uppercase tracking-widest">{project.title}</span>
+                <span className="text-white/10 font-display text-5xl uppercase tracking-widest">{project.title}</span>
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
           </div>
 
         </div>

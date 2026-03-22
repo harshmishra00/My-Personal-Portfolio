@@ -31,11 +31,10 @@ function App() {
         <Navbar />
         <Hero />
         <About />
-        <Projects />
         <Services />
+        <Projects />
         <Education />
         <Achievements />
-        {/* <Holopin /> */}
         <Footer />
       </div>
     </>

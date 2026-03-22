@@ -24,20 +24,8 @@ import badge13 from '../assets/badges/badge_13.webp';
 import badge14 from '../assets/badges/badge_14.webp';
 import superContributorBadge from '../assets/super_contributor.webp';
 export const projects = [
-  {
+   {
     id: 1,
-    year: "2025",
-    category: "Full Stack",
-    title: "Maps",
-    description: "Real-time maps app built with React and browser geolocation, integrating Google Maps and OpenWeather APIs for live location tracking and weather data.",
-    liveUrl: "https://maps-5pny.onrender.com/",
-    githubUrl: "https://github.com/harshmishra00/Maps",
-    image: mapsImg,
-    imageColor: "bg-blue-900",
-    techStack: ["React", "Vite", "Google Maps API", "OpenWeather API", "CSS"]
-  },
-  {
-    id: 2,
     year: "2025",
     category: "MERN Stack",
     title: "Brainlitix",
@@ -47,6 +35,17 @@ export const projects = [
     image: brainlitixImg,
     imageColor: "bg-purple-900",
     techStack: ["MongoDB", "Express", "React", "Node.js", "JWT", "Razorpay"]
+  },{
+    id: 2,
+    year: "2025",
+    category: "Full Stack",
+    title: "Maps",
+    description: "Real-time maps app built with React and browser geolocation, integrating Google Maps and OpenWeather APIs for live location tracking and weather data.",
+    liveUrl: "https://maps-5pny.onrender.com/",
+    githubUrl: "https://github.com/harshmishra00/Maps",
+    image: mapsImg,
+    imageColor: "bg-blue-900",
+    techStack: ["React", "Vite", "Google Maps API", "OpenWeather API", "CSS"]
   },
   {
     id: 3,

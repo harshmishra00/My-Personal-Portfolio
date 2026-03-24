@@ -32,7 +32,7 @@ const Footer = () => {
           className="max-w-[700px] mb-12"
         >
           <p className="text-[16px] md:text-[20px] lg:text-[24px] font-sans leading-relaxed font-medium">
-            Open to conversations, 🤝 collabs, 🧠 creative <br className="hidden md:block" />challenges, 🧩 puzzles-or just a friendly game of ♟️ Chess.<br />
+            Open to conversations, collabs, creative <br className="hidden md:block" />challenges, puzzles-or just a friendly game of Chess.<br />
             <span className="text-base mt-2 block font-bold">📞 +91-9452513474</span>
           </p>
         </motion.div>

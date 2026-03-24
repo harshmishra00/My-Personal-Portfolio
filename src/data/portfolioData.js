@@ -138,7 +138,7 @@ export const education = [
     year: "2023 - Present",
     title: "Lovely Professional University",
     subtitle: "Bachelor of Technology - Computer Science and Engineering",
-    grade: "CGPA: 7.66",
+    grade: "CGPA: ",
     logo: lpuLogo
   },
   {

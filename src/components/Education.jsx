@@ -6,29 +6,43 @@ import bitsNetworking from '../assets/certificates_webp/bits_networking.webp';
 import hacktoberfest from '../assets/certificates_webp/hacktoberfest.webp';
 import nptel from '../assets/certificates_webp/nptel.webp';
 import tcpIp from '../assets/certificates_webp/tcp_ip.webp';
+import oracle1 from '../assets/certificates_webp/oracle1.png';
+import oracle2 from '../assets/certificates_webp/oracle2.png';
 
 // Certificates
 const certificateData = [
   {
     id: 1,
+    name: "Oracle Cloud Infrastructure 2025 Data Foundations",
+    issuer: "Oracle",
+    image: oracle1
+  },
+  {
+    id: 2,
+    name: "Oracle Cloud Infrastructure 2025 AI Foundations",
+    issuer: "Oracle",
+    image: oracle2
+  },
+  {
+    id: 3,
     name: "Bits and Bytes of Computer Networking",
     issuer: "Google / Coursera",
     image: bitsNetworking
   },
   {
-    id: 2,
+    id: 4,
     name: "Hacktoberfest Tree",
     issuer: "DigitalOcean / Intel",
     image: hacktoberfest
   },
   {
-    id: 3,
+    id: 5,
     name: "Cloud Computing",
     issuer: "NPTEL / IIT Kharagpur",
     image: nptel
   },
   {
-    id: 4,
+    id: 6,
     name: "TCP/IP Advanced Topics",
     issuer: "Coursera",
     image: tcpIp

@@ -3,6 +3,7 @@ import brainlitixImg from '../assets/projects/brainlitix.webp';
 import farmacyImg from '../assets/projects/Farmacy.webp';
 import extensionImg from '../assets/projects/extenstion.webp';
 import rtosImg from '../assets/projects/rtos.webp';
+import whiteboardImg from '../assets/projects/whiteboard.png';
 import lpuLogo from '../assets/lpulogo.png';
 import seiLogo from '../assets/sei.png';
 import oscgImg from '../assets/oscg_campus_lead.webp';
@@ -26,6 +27,18 @@ import superContributorBadge from '../assets/super_contributor.webp';
 export const projects = [
    {
     id: 1,
+    year: "2026",
+    category: "MERN Stack",
+    title: "SyncBoard",
+    description: "Real-time collaborative whiteboard (MERN + Socket.io) supporting multi-user room-based sessions with instant canvas synchronization and history stack support using HTML5 Canvas and Rough.js.",
+    liveUrl: "https://whiteboard-2ela.onrender.com/",
+    githubUrl: "https://github.com/harshmishra00",
+    image: whiteboardImg,
+    imageColor: "bg-indigo-900",
+    techStack: ["MERN", "Socket.io", "HTML5 Canvas", "Rough.js"]
+  },
+  {
+    id: 2,
     year: "2025",
     category: "MERN Stack",
     title: "Brainlitix",
@@ -59,30 +72,30 @@ export const projects = [
     imageColor: "bg-green-900",
     techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Weather API"]
   },
-  {
-    id: 4,
-    year: "2024",
-    category: "Systems / C",
-    title: "RTOS Event Logger",
-    description: "Real-Time Operating System implementation in C, featuring task scheduling, context switching, and synchronization primitives built from scratch.",
-    liveUrl: null,
-    githubUrl: "https://github.com/harshmishra00/RTOS",
-    image: rtosImg,
-    imageColor: "bg-orange-900",
-    techStack: ["C", "FreeRTOS", "Task Scheduling", "Context Switching", "Semaphores"]
-  },
-  {
-    id: 5,
-    year: "2025",
-    category: "Chrome Extension",
-    title: "Text Cortex",
-    description: "Chrome extension that saves copied text snippets, lets you edit, label, and reuse them — a smart clipboard manager built for developers and writers.",
-    liveUrl: null,
-    githubUrl: "https://github.com/harshmishra00",
-    image: extensionImg,
-    imageColor: "bg-rose-900",
-    techStack: ["JavaScript", "Chrome APIs", "HTML", "CSS", "LocalStorage"]
-  }
+  // {
+  //   id: 4,
+  //   year: "2024",
+  //   category: "Systems / C",
+  //   title: "RTOS Event Logger",
+  //   description: "Real-Time Operating System implementation in C, featuring task scheduling, context switching, and synchronization primitives built from scratch.",
+  //   liveUrl: null,
+  //   githubUrl: "https://github.com/harshmishra00/RTOS",
+  //   image: rtosImg,
+  //   imageColor: "bg-orange-900",
+  //   techStack: ["C", "FreeRTOS", "Task Scheduling", "Context Switching", "Semaphores"]
+  // },
+  // {
+  //   id: 5,
+  //   year: "2025",
+  //   category: "Chrome Extension",
+  //   title: "Text Cortex",
+  //   description: "Chrome extension that saves copied text snippets, lets you edit, label, and reuse them — a smart clipboard manager built for developers and writers.",
+  //   liveUrl: null,
+  //   githubUrl: "https://github.com/harshmishra00",
+  //   image: extensionImg,
+  //   imageColor: "bg-rose-900",
+  //   techStack: ["JavaScript", "Chrome APIs", "HTML", "CSS", "LocalStorage"]
+  // }
 ];
 
 export const achievements = [
